@@ -12,7 +12,10 @@ const categorySchema = new Schema(
     questionIds: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Question'
-    }]   
+    }],
+    img: {
+      type: String,
+    } 
   }
 );
 
