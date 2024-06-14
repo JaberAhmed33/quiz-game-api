@@ -20,15 +20,15 @@ getTeam = async (req, res) => {
 }
 
 addTeam = async (req, res) => {
-  const { name, color, img } = req.body;
+  const dataArray = req.body;
 
   try {
 
-    if (!name || !color ) {
+    if (!dataArray ) {
       res.status(400).json({ msg: "all fields are required" });
     }
 
-    const data = await Team.create({ name, color, img });
+    const data = await Team.insertMany(dataArray);
     res.status(200).json({ msg: "done", data });
     } catch (error) {
       res.status(400).json({ msg: "bad request", error });
