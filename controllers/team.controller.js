@@ -35,8 +35,20 @@ addTeam = async (req, res) => {
   }
 }
 
+editTeam = async (req, res) => {
+    const teamId = req.params.id;
+    const { points } = req.body;
+    try {
+      const data = await Team.findByIdAndUpdate({ _id: teamId }, { points });
+      res.status(200).json({ msg: "done", data });
+    } catch (error) {
+      res.status(400).json({ msg: "bad request", error });
+    }
+  }
+
 module.exports = {
     getTeams,
     addTeam,
-    getTeam
+    getTeam,
+    editTeam
 };
