@@ -25,7 +25,7 @@ addQuestion = async (req, res) => {
   console.log("ghg");
   const { subCat, categoryId, timer, question, answer } = req.body;
   try {
-    if (!subCat || !categoryId || !timer || !question || !answer) {
+    if (!subCat || !categoryId || !timer || !question ) {
       res.status(400).json({ msg: "all fields are required" });
     }
 
