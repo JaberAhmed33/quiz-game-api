@@ -22,8 +22,7 @@ getQuestion = async (req, res) => {
 };
 
 addQuestion = async (req, res) => {
-  console.log("ghg");
-  const { subCat, categoryId, timer, question, answer } = req.body;
+  const { subCat, categoryId, timer, question, answer, img } = req.body;
   try {
     if (!subCat || !categoryId || !timer || !question ) {
       res.status(400).json({ msg: "all fields are required" });
@@ -36,6 +35,7 @@ addQuestion = async (req, res) => {
       timer,
       question,
       answer,
+      img
     });
 
     const findCategory = await Category.findByIdAndUpdate({ _id: categoryId }, {
