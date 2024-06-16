@@ -37,10 +37,17 @@ addTeam = async (req, res) => {
 
 editTeam = async (req, res) => {
     const teamId = req.params.id;
-    const { points } = req.body;
+    const {incrementValue} = req.body;
+
+    console.log("incrementValue")
+
     try {
-      const data = await Team.findByIdAndUpdate({ _id: teamId }, { points });
-      res.status(200).json({ msg: "done", data });
+      const data = await Team.findByIdAndUpdate(
+        { _id: teamId },
+        { $inc: { points: incrementValue } },
+        { new: true }
+    );
+  res.status(200).json({ msg: "done", data });
     } catch (error) {
       res.status(400).json({ msg: "bad request", error });
     }
